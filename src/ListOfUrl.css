@@ -1,0 +1,71 @@
+.list {
+    display: flex;
+    align-items: center;
+  }
+  
+  .list-button {
+  
+    text-align: center;
+    margin: 0.2rem;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    width: 6rem;
+    height: 3rem;
+    justify-content: center;
+    color: rgb(69, 11, 124);
+    background-color: rgb(215, 191, 238);
+  }
+  
+  .popup-box {
+  
+    background-color: rgb(235, 222, 248);
+    color: rgb(15, 17, 18);
+    width: 15rem;
+    height: 10rem;
+    border: 2rem;
+    margin: 4rem;
+    margin-left: 2rem;
+    border: 1px solid black;
+  }
+  
+  .popup-input {
+    width: 14rem;
+    height: 2rem;
+  }
+  
+  .popup-close {
+    position: absolute;
+    top: 69px;
+    right: 70px;
+  }
+  
+  .popup-save {
+    position: absolute;
+    bottom: 70px;
+    left: 40px;
+  }
+  
+  .popup-cancel {
+    position: absolute;
+    bottom: 70px;
+    right: 70px;
+  }
+  
+  #overlay {
+    position: fixed;
+    opacity: 10;
+    top: 0ch;
+    bottom: och;
+    right: 0ch;
+    left: 0ch;
+    background-color: rgb(15, 13, 13);
+    pointer-events: none;
+  
+  }
+  
+  #overlay-active {
+    opacity: 2;
+    pointer-events: all;
+  
+  }
