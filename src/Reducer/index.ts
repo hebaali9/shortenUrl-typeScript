@@ -7,10 +7,12 @@ type ActionType =
       payload: any;
     }
   | any;
+
 export function reducer(
   state = { token: "", urlsList: [] },
   action: ActionType
 ) {
+  // let's use switch
   if (action.type === "UPDATE_THE_TOKEN") {
     return {
       ...state,

@@ -9,6 +9,8 @@ function InputUrl(props: any) {
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
+    // shortenUrl
+    // instead of sending props to the action, send the callback needed only. Use the same approach as in the register action
     store.dispatch(Input_Url_Api({ token, longUrl, props }));
 
     // axios
@@ -27,6 +29,7 @@ function InputUrl(props: any) {
   }
 
   return (
+    // extra div
     <div>
       <form onSubmit={handleSubmit} className="url-form">
         <input

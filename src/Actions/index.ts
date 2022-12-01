@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Dispatch } from "redux";
 import { baseurl } from "../constant";
+// remove unwanted imports
 import { Url, EditedUrl, UrlListParams } from "../types";
 
 export const Update_Token_Action = function (token: string) {
@@ -10,6 +11,7 @@ export const Update_Token_Action = function (token: string) {
   };
 };
 
+// if action is returning an object, name should be all capital, e.g. Update_Urls_List => UPDATE_URLS_LIST
 export const Update_Urls_List = function (urlsList: object[]) {
   return {
     type: "UPDATING_LIST_OF_URLS",
@@ -143,6 +145,7 @@ export function Edit_Url_Api(
   };
 }
 
+// all type names should start with capital letter
 type deleteParams = {
   id: string;
   token: string;

@@ -9,13 +9,17 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
+  // "M" | "F" is used in multiple places, let's set a type for it
   const [gender, setGender] = useState<"M" | "F">("F");
 
   const navigate = useNavigate();
+
+  // name should be clearer. navigate to shorten url form/page
   const navigateToInputurl = () => {
     navigate("/");
   };
 
+  // change event type and change place of function call to `form` element instead of the button element
   function handelSignUpSubmit(event: React.MouseEvent<HTMLElement>) {
     event.preventDefault();
 
@@ -45,10 +49,12 @@ function SignUp() {
   }
 
   return (
+    // class names should be small kebabcase
     <div className="Sign-up">
       <h2>Sign UP</h2>
       <form>
         <div className="email-div">
+          {/* label elements should always wrap input elements */}
           <label>Email </label>
           <input
             type="text"
@@ -58,6 +64,7 @@ function SignUp() {
             }}
           ></input>
         </div>
+        {/* remove `-div` suffix */}
         <div className="password-div">
           <label>Password </label>
           <input
@@ -112,6 +119,7 @@ function SignUp() {
           />
           Female
         </p>
+        {/* ?? */}
         UrlListParams
         <button type="submit" onClick={handelSignUpSubmit}>
           Sign UP

@@ -11,6 +11,7 @@ import { Edit_Url_Api, On_Delete_Api, List_Of_Urls } from "./Actions";
 import { Url, EditedUrl } from "./types";
 
 function ListOfUrl() {
+  // clearer name please for `isOpen`
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUrl, setSelectedUrl] = useState<Url | null>(null);
   const token = store.getState().token;
@@ -20,6 +21,7 @@ function ListOfUrl() {
 
   function onEdit(editedUrl: string) {
     store.dispatch(
+      // rename to editUrl
       Edit_Url_Api({ selectedUrl, editedUrl, token }, onClosePopup)
     );
     // axios
@@ -53,6 +55,7 @@ function ListOfUrl() {
   }
 
   function onDelete(id: string) {
+    // rename to deleteUrl
     store.dispatch(On_Delete_Api({ id, token, urlsList }));
     // axios
     //   .delete(`${baseurl}/url/${id}`, {
@@ -74,10 +77,12 @@ function ListOfUrl() {
 
   const columns = [
     {
+      // title should be user readable
       title: "fullUrl",
       dataIndex: "full_url",
     },
     {
+      // title should be user readable
       title: "shortUrl",
       dataIndex: "short_url",
     },
@@ -115,6 +120,7 @@ function ListOfUrl() {
   ];
 
   useEffect(() => {
+    // rename to getUrlsList
     store.dispatch(List_Of_Urls({ token }));
 
     // useEffect(() => {

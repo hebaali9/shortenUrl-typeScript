@@ -10,6 +10,7 @@ function ShortenUrlPage() {
     <div>
       <div className="App">
         <Header />
+        {/* shorten */}
         <h1>Short your URL here </h1>
 
         <InputUrl setShortUrl={setShortUrl} />
