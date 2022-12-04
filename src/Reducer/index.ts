@@ -1,5 +1,4 @@
-import { Url } from "../types";
-import { AnyAction } from "redux";
+import { Url } from "../types/types";
 
 type ActionType =
   | {
@@ -12,31 +11,31 @@ export function reducer(
   state = { token: "", urlsList: [] },
   action: ActionType
 ) {
-  // let's use switch
-  if (action.type === "UPDATE_THE_TOKEN") {
-    return {
-      ...state,
-      token: action.payload,
-    };
-  } else if (action.type === "UPDATING_LIST_OF_URLS") {
-    return {
-      ...state,
-      urlsList: action.payload,
-    };
-  } else if (action.type === "EDIT_URL") {
-    const newUrls = state.urlsList.map((url: Url) => {
+  switch (action.type) {
+    case "UPDATE_THE_TOKEN":
       return {
-        ...url,
-        full_url:
-          url.id === action.payload.selectedUrl.id
-            ? action.payload.editedUrl
-            : url.full_url,
+        ...state,
+        token: action.payload,
       };
-    });
-    return {
-      ...state,
-      urlsList: newUrls,
-    };
+    case "UPDATING_LIST_OF_URLS":
+      return {
+        ...state,
+        urlsList: action.payload,
+      };
+    case "EDIT_URL":
+      const newUrls = state.urlsList.map((url: Url) => {
+        return {
+          ...url,
+          full_url:
+            url.id === action.payload.selectedUrl.id
+              ? action.payload.editedUrl
+              : url.full_url,
+        };
+      });
+      return {
+        ...state,
+        urlsList: newUrls,
+      };
   }
 
   return state;

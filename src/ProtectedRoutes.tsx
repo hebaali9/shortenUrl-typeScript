@@ -1,8 +1,14 @@
 import { Navigate } from "react-router-dom";
-import { store } from "./Store";
+import { useSelector } from "react-redux";
 
 function ProtectedRoutes({ children }: { children: JSX.Element }) {
-  const token = store.getState().token;
+  interface RootState {
+    token: string;
+  }
+
+  const selectToken = (state: RootState) => state.token;
+
+  const token = useSelector(selectToken);
   const isLogedIn = !!token;
   return isLogedIn ? children : <Navigate to="/signUp" />;
 }
