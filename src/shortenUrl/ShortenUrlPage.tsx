@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import "./App.css";
-import InputUrl from "./Inputurl";
-import { Header } from "./Header";
+import InputUrl from "../inputUrl/Inputurl";
+import { Header } from "../header/Header";
 
 function ShortenUrlPage() {
   const [shortUrl, setShortUrl] = useState("");
 
   return (
     <div>
-      <div className="App">
+      <div className="app">
         <Header />
-        <h1>Short your URL here </h1>
-
+        <h1> shorten your URL here </h1>
         <InputUrl setShortUrl={setShortUrl} />
 
         <section>
@@ -19,7 +18,6 @@ function ShortenUrlPage() {
           Shortener to create a shortened link making it easy to remember
         </section>
 
-        {/* unary operator */}
         {shortUrl ? (
           <a href={shortUrl}>{shortUrl}</a>
         ) : (

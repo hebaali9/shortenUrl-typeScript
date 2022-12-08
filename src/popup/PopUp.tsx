@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import "./PopUp.css";
-import { Url } from "./types";
+import { Url } from "../types/types";
 
-// type popupparams{
-//   url: Url ;
-//    onEdit: ;
-//    onCLose: ;
-// }
 function PopUp({
   url,
   onEdit,
