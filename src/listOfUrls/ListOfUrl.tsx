@@ -8,15 +8,15 @@ import "antd/dist/antd.css";
 import PopUp from "../popup/PopUp";
 import { store } from "../store";
 import { editUrl, On_Delete_Api, getUrlsList } from "../actions";
-import { Url } from "../types/types";
+import { Url } from "../types";
 import { useSelector } from "react-redux";
 
+type RootState = {
+  token: string;
+};
 function ListOfUrl() {
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [selectedUrl, setSelectedUrl] = useState<Url | null>(null);
-  interface RootState {
-    token: string;
-  }
 
   const selectToken = (state: RootState) => state.token;
 

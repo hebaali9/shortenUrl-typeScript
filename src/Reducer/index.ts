@@ -1,4 +1,4 @@
-import { Url } from "../types/types";
+import { Url } from "../types";
 
 type ActionType =
   | {

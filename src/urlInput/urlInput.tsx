@@ -4,21 +4,19 @@ import { store } from "../store";
 import { Input_Url_Api } from "../actions";
 import { useSelector } from "react-redux";
 
+type RootState = {
+  token: string;
+};
+// type the props
 function UrlInput(props: any) {
   const [longUrl, setLongUrl] = useState("");
-  //const token = store.getState().token;
-  //const token = useSelector((state) => state.token);
-  interface RootState {
-    token: string;
-  }
-  const selectToken = (state: RootState) => state.token;
-  const token = useSelector(selectToken);
+
+  const token = useSelector((state: RootState) => state.token);
 
   function shortenUrl(event: React.FormEvent) {
     event.preventDefault();
 
-    // instead of sending props to the action, send the callback needed only. Use the same approach as in the register action
-    store.dispatch(Input_Url_Api({ token, longUrl, props }));
+    store.dispatch(Input_Url_Api({ token, longUrl }, props.setShortUrl));
   }
 
   return (
