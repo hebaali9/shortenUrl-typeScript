@@ -12,7 +12,6 @@ function SignUp() {
   const [fName, setFName] = useState("");
   const [lName, setLName] = useState("");
   const [gender, setGender] = useState<Gender>("F");
-
   const navigate = useNavigate();
 
   const navigateToShortenUrlPage = () => {
@@ -105,8 +104,7 @@ function SignUp() {
           />
           Female
         </p>
-        {/* ?? */}
-        UrlListParams
+
         <button type="submit">Sign UP</button>
       </form>
     </div>

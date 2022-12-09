@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import InputUrl from "../inputUrl/Inputurl";
+import InputUrl from "../urlInput/urlInput";
 import { Header } from "../header/Header";
 
 function ShortenUrlPage() {

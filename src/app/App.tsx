@@ -3,10 +3,13 @@ import ProtectedRoutes from "../ProtectedRoutes";
 import SignUp from "../signUp/SignUp";
 import ShortenUrlPage from "../shortenUrl/ShortenUrlPage";
 import ListOfUrl from "../listOfUrls/ListOfUrl";
-import { store } from "../store";
+import { useSelector } from "react-redux";
 
+type RootState = {
+  token: string;
+};
 function App() {
-  const token = store.getState().token;
+  const token = useSelector((state: RootState) => state.token);
 
   return (
     <BrowserRouter>

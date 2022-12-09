@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./PopUp.css";
-import { Url } from "../types/types";
+import { Url } from "../types";
 
 function PopUp({
   url,

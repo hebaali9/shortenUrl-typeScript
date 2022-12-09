@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Dispatch } from "redux";
-import { baseurl } from "../constant/constant";
-import { Url, UrlListParams } from "../types/types";
+import { baseurl } from "../constant";
+import { Url, UrlListParams } from "../types";
 
 export const Update_Token_Action = function (token: string) {
   return {
@@ -135,10 +135,11 @@ export function getUrlsList({ token }: { token: string }) {
 type InputParams = {
   token: string;
   longUrl: string;
-  props: any;
 };
-export function Input_Url_Api({ token, longUrl, props }: InputParams) {
-  console.log(props);
+export function Input_Url_Api(
+  { token, longUrl }: InputParams,
+  successCb: (shortUrl: string) => void
+) {
   return async (dispatch: Dispatch) => {
     try {
       const response = await axios.post(
@@ -151,7 +152,7 @@ export function Input_Url_Api({ token, longUrl, props }: InputParams) {
         }
       );
 
-      props.setShortUrl(response.data.short_url);
+      successCb(response.data.short_url);
     } catch (error) {
       console.error(error);
     }
