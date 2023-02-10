@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import "./InputURL.css";
+//import "./InputURL.css";
 import { store } from "../store";
-import { Input_Url_Api } from "../actions";
+import { inputUrl } from "../actions";
 import { useSelector } from "react-redux";
 
 type RootState = {
   token: string;
 };
 // type the props
-function UrlInput(props: any) {
+function UrlInput(props: { setShortUrl: (shortUrl: string) => void }) {
   const [longUrl, setLongUrl] = useState("");
 
   const token = useSelector((state: RootState) => state.token);
@@ -16,7 +16,7 @@ function UrlInput(props: any) {
   function shortenUrl(event: React.FormEvent) {
     event.preventDefault();
 
-    store.dispatch(Input_Url_Api({ token, longUrl }, props.setShortUrl));
+    store.dispatch(inputUrl({ token, longUrl }, props.setShortUrl));
   }
 
   return (

@@ -136,7 +136,7 @@ type InputParams = {
   token: string;
   longUrl: string;
 };
-export function Input_Url_Api(
+export function inputUrl(
   { token, longUrl }: InputParams,
   successCb: (shortUrl: string) => void
 ) {

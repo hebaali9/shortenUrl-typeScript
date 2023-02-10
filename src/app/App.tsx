@@ -15,6 +15,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/signup" element={<SignUp />} />
+
         <Route
           path="/"
           element={
