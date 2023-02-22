@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-//import "./signUp.css";
 import { useNavigate } from "react-router-dom";
 import { signup } from "../actions";
 import { store } from "../store";
-import styles from "./index.css";
 import { mockSignUpAPI } from "../mockSignUpAPI";
+import { Header } from "../header/Header";
+import { Button } from "antd";
 
 type Gender = "M" | "F";
 
@@ -29,7 +29,6 @@ function SignUp() {
   // const navigateToShortenUrlPage = () => {
   //   navigate("/");
   // };
-  //console.log(navigateToShortenUrlPage);
 
   function handelSignUpSubmit(event: React.FormEvent<HTMLElement>) {
     event.preventDefault();
@@ -48,6 +47,7 @@ function SignUp() {
 
   return (
     <div className="sign-up">
+      <Header />
       <form
         className="text-base  flex flex-col md:justify-center text-blue-700 mb-4  md:mx-auto p-4   font-sans rounded  border-solid shadow-md border-2	  items-center md:items-start md:w-96 mt-20 md:mt-48 bg-slate-50"
         onSubmit={handelSignUpSubmit}
@@ -131,12 +131,12 @@ function SignUp() {
           Female
         </p>
 
-        <button
-          type="submit"
+        <Button
+          type="primary"
           className="text-white bg-blue-700 border-solid w-full h-10 rounded-md  "
         >
           Sign UP
-        </button>
+        </Button>
       </form>
     </div>
   );

@@ -7,6 +7,7 @@ function ProtectedRoutes({ children }: { children: JSX.Element }) {
   };
 
   const token = useSelector((state: RootState) => state.token);
+  //const isLogedIn = !!token;
   const isLogedIn = true;
   return isLogedIn ? children : <Navigate to="/signUp" />;
 }
