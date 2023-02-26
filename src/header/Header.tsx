@@ -5,7 +5,7 @@ export function Header() {
 
   return (
     <header>
-      <nav className=" font-sans text-xs md:text-lg font-bold bg-blue-800 h-12 justify-center text-left flex flex-row mb-7 md:font-bold  md:h-16  md:px-10 md:py-8  md:mb-14">
+      <nav className=" font-sans text-sm md:text-lg font-bold bg-blue-800 h-12 justify-center text-left flex flex-row mb-7 md:font-bold  md:h-16  md:px-10 md:py-8  md:mb-14">
         {isLogedIn ? (
           <>
             <Link className="flex flex-col justify-around" to="/">

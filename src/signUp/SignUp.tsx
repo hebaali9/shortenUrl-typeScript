@@ -49,7 +49,7 @@ function SignUp() {
     <div className="sign-up">
       <Header />
       <form
-        className="text-base  flex flex-col md:justify-center text-blue-700 mb-4  md:mx-auto p-4   font-sans rounded  border-solid shadow-md border-2	  items-center md:items-start md:w-96 mt-20 md:mt-48 bg-slate-50"
+        className="text-base px-3 mx-5 flex flex-col md:justify-center text-blue-700 mb-4  md:mx-auto p-4   font-sans rounded  border-solid shadow-md border-2	  items-center md:items-start md:w-96 mt-20 md:mt-48 bg-slate-50"
         onSubmit={handelSignUpSubmit}
       >
         <h2 className="text-blue-700 font-bold md:ml-36 md:text-xl text-lg mb-3 pb-5 text-center font-sans ">
