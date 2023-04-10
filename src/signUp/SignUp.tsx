@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signup } from "../actions";
 import { store } from "../store";
-import { mockSignUpAPI } from "../mockSignUpAPI";
 import { Header } from "../header/Header";
 import { Button } from "antd";
 
@@ -19,30 +18,11 @@ function SignUp() {
   const navigateToShortenUrlPage = () => {
     navigate("/");
   };
-  // useEffect(() => {
-  //   mockSignUpAPI().then((RegistrationParams) => {
-  //     console.log(RegistrationParams);
-  //     navigateToShortenUrlPage;
-  //   });
-  // }, []);
-
-  // const navigateToShortenUrlPage = () => {
-  //   navigate("/");
-  // };
 
   function handelSignUpSubmit(event: React.FormEvent<HTMLElement>) {
     event.preventDefault();
-    mockSignUpAPI().then((RegistrationParams) => {
-      console.log(RegistrationParams);
-      navigate("/");
-    });
 
-    store.dispatch(
-      signup(
-        { email, password, fName, lName, gender },
-        navigateToShortenUrlPage
-      )
-    );
+    store.dispatch(signup({ email }, navigateToShortenUrlPage));
   }
 
   return (
@@ -134,6 +114,7 @@ function SignUp() {
         <Button
           type="primary"
           className="text-white bg-blue-700 border-solid w-full h-10 rounded-md  "
+          htmlType="submit"
         >
           Sign UP
         </Button>

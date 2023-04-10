@@ -1,7 +1,14 @@
-import axios from "axios";
-import { Dispatch } from "redux";
-import { baseurl } from "../constant";
+// import axios from "axios";
+import { AnyAction, Dispatch } from "redux";
+// import { baseurl } from "../constant";
 import { Url, UrlListParams } from "../types";
+import {
+  mockDeleteUrl,
+  mockPostUrl,
+  mockSignupApi,
+  mockUpdateUrl,
+} from "../mockApi";
+import { getUserUrls } from "../mockApi/storage";
 
 export const Update_Token_Action = function (token: string) {
   return {
@@ -19,27 +26,20 @@ export const UPDATE_URLS_LIST = function (urlsList: object[]) {
 
 type RegistrationParams = {
   email: string;
-  password: string;
-  fName: string;
-  lName: string;
-  gender: "M" | "F";
+  // password: string;
+  // fName: string;
+  // lName: string;
+  // gender: "M" | "F";
 };
 
-export function signup(
-  { email, password, fName, lName, gender }: RegistrationParams,
-  successCb: () => void
-) {
+export function signup({ email }: RegistrationParams, successCb: () => void) {
   return async (dispatch: Dispatch) => {
     try {
-      const response = await axios.post(`${baseurl}/signup`, {
+      const response = await mockSignupApi({
         email,
-        password,
-        first_name: fName,
-        last_name: lName,
-        gender,
       });
 
-      const action = Update_Token_Action(response.data.token);
+      const action = Update_Token_Action(response.token);
       dispatch(action);
       successCb();
     } catch (error) {
@@ -48,7 +48,7 @@ export function signup(
   };
 }
 
-export function EDIT_URL({
+export function EDIT_URL_SUCCESS({
   editedUrl,
   selectedUrl,
 }: {
@@ -56,7 +56,7 @@ export function EDIT_URL({
   selectedUrl: Url | null;
 }) {
   return {
-    type: "EDIT_URL",
+    type: "EDIT_URL_SUCCESS",
     payload: {
       editedUrl,
       selectedUrl,
@@ -65,22 +65,14 @@ export function EDIT_URL({
 }
 
 export function editUrl(
-  { selectedUrl, editedUrl, token }: UrlListParams,
+  { selectedUrl, editedUrl }: UrlListParams,
   onClosePopup: () => void
 ) {
   return async (dispatch: Dispatch) => {
     try {
-      await axios.put(
-        `${baseurl}/url/${selectedUrl?.id}`,
-        { full_url: editedUrl },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await mockUpdateUrl(selectedUrl!.id, editedUrl);
 
-      const action = EDIT_URL({ editedUrl, selectedUrl });
+      const action = EDIT_URL_SUCCESS({ editedUrl, selectedUrl });
       dispatch(action);
     } catch (error) {
       console.log(error);
@@ -95,14 +87,11 @@ type DeleteParams = {
   token: string;
   urlsList: Url[];
 };
-export function On_Delete_Api({ id, token, urlsList }: DeleteParams) {
+export function On_Delete_Api({ id, urlsList }: DeleteParams) {
   return async (dispatch: Dispatch) => {
     try {
-      await axios.delete(`${baseurl}/url/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await mockDeleteUrl(id);
+
       dispatch(
         UPDATE_URLS_LIST(
           urlsList.filter((el) => {
@@ -119,13 +108,9 @@ export function On_Delete_Api({ id, token, urlsList }: DeleteParams) {
 export function getUrlsList({ token }: { token: string }) {
   return async (dispatch: Dispatch) => {
     try {
-      const response = await axios.get(`${baseurl}/urls`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await getUserUrls();
 
-      dispatch(UPDATE_URLS_LIST(response.data));
+      dispatch(UPDATE_URLS_LIST(response));
     } catch (error) {
       console.error(error);
     }
@@ -137,22 +122,14 @@ type InputParams = {
   longUrl: string;
 };
 export function inputUrl(
-  { token, longUrl }: InputParams,
+  { longUrl }: InputParams,
   successCb: (shortUrl: string) => void
 ) {
   return async (dispatch: Dispatch) => {
     try {
-      const response = await axios.post(
-        `${baseurl}/url`,
-        { url: longUrl },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await mockPostUrl(longUrl);
 
-      successCb(response.data.short_url);
+      successCb(response.shortUrl);
     } catch (error) {
       console.error(error);
     }
