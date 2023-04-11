@@ -15,7 +15,12 @@ function ShortenUrlPage() {
         <InputUrl setShortUrl={setShortUrl} />
 
         {shortUrl ? (
-          <a href={shortUrl}>{shortUrl}</a>
+          <a
+            className=" ml-24 pt-4 md:pl-80 md:ml-72 md:pt-7 flex flex-col justify-center"
+            href={shortUrl}
+          >
+            {shortUrl}
+          </a>
         ) : (
           <p className=" md:text-center text-start mt-7 md:pl-0 pl-7 text-blue-700 md:text-lg text-xs ">
             Your URL will appear here

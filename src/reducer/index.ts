@@ -22,7 +22,7 @@ export function reducer(
         ...state,
         urlsList: action.payload,
       };
-    case "EDIT_URL":
+    case "EDIT_URL_SUCCESS":
       const newUrls = state.urlsList.map((url: Url) => {
         return {
           ...url,
